@@ -1,0 +1,63 @@
+{
+	"name": "midi-kbd",
+	"version": "1.0.0-alpha.1",
+	"license": "MIT",
+	"author": "John Hooks <bitmachina@outlook.com> (https://johnhooks.io/)",
+	"homepage": "https://github.com/johnhooks/midi-kbd#readme",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/johnhooks/midi-kbd.git"
+	},
+	"bugs": "https://github.com/johnhooks/midi-kbd/issues",
+	"type": "module",
+	"sideEffects": false,
+	"exports": "./dist/index.js",
+	"source": "src/index.ts",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist/"
+	],
+	"scripts": {
+		"build": "./scripts/build-pkg.sh",
+		"build:all": "yarn build && yarn generate:docs",
+		"build:esm": "./scripts/esm.sh",
+		"build:tsc": "tsc --build ./src",
+		"build:types": "./scripts/build-types.sh",
+		"check": "tsc --build ./src && tsc --project ./tests",
+		"clean": "rimraf ./{dist,temp}",
+		"clean:all": "yarn clean && yarn clean:tsc",
+		"clean:tsc": "rimraf ./build",
+		"generate:docs": "./scripts/build-docs.sh",
+		"lint": "eslint --ext .js,.ts .",
+		"prepare": "husky install",
+		"release": "shipjs prepare",
+		"test": "vitest run"
+	},
+	"devDependencies": {
+		"@microsoft/api-documenter": "7.19.27",
+		"@microsoft/api-extractor": "7.33.7",
+		"@testing-library/dom": "8.19.1",
+		"@testing-library/jest-dom": "5.16.5",
+		"@types/node": "18.11.11",
+		"@types/testing-library__jest-dom": "5.14.5",
+		"@typescript-eslint/eslint-plugin": "5.46.1",
+		"@typescript-eslint/parser": "5.46.1",
+		"eslint": "8.29.0",
+		"eslint-config-prettier": "8.5.0",
+		"eslint-import-resolver-typescript": "3.5.2",
+		"eslint-plugin-import": "2.26.0",
+		"eslint-plugin-jest-dom": "4.0.3",
+		"eslint-plugin-testing-library": "5.9.1",
+		"husky": "8.0.2",
+		"jsdom": "20.0.3",
+		"lint-staged": "13.1.0",
+		"prettier": "2.8.1",
+		"rimraf": "3.0.2",
+		"shipjs": "0.25.0",
+		"ts-node": "10.9.1",
+		"tslib": "2.4.1",
+		"typescript": "4.9.4",
+		"vite": "4.0.3",
+		"vitest": "0.25.8"
+	}
+}

@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		"rootDir": "../",
+		"outDir": "./build",
+
+		"target": "esnext",
+		"module": "NodeNext",
+		"moduleResolution": "nodenext",
+
+		"strict": false,
+		"noEmit": true,
+
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+
+		"types": ["vitest/globals"]
+	},
+	"include": ["**/*"],
+	"references": [{ "path": "../src" }]
+}

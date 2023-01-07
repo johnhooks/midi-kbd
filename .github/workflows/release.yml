@@ -1,0 +1,29 @@
+name: Release if needed
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+env:
+  # Used by scripts/build-types.sh
+  CI: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build application
+        uses: ./.github/actions/build
+
+      - name: Release if needed
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        shell: bash
+        run: yarn run shipjs trigger
