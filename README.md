@@ -2,6 +2,8 @@
   midi-kbd
 </h1>
 
+> Web MIDI input keyboard controller
+
 ## 📦 Install
 
 ```sh

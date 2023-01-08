@@ -3,8 +3,8 @@
 		"rootDir": ".",
 		"outDir": "../build",
 
-		"lib": ["DOM", "DOM.Iterable", "ES2018"],
-		"target": "ES2018",
+		"lib": ["DOM", "DOM.Iterable", "ES2021"],
+		"target": "ES2021",
 		"module": "ES2015",
 		"moduleResolution": "node",
 
