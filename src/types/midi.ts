@@ -54,10 +54,10 @@ export type Octave = 0 | 1 | 2 | 4 | 5 | 6 | 7 | 8;
  */
 export type Channel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
 
+/**
+ * @internal
+ */
 export type MidiNoteStatus = typeof StatusByte.NoteOn | typeof StatusByte.NoteOff;
-
-export type AudioParamKey = "gate" | "note" | "velocity" | "brightness" | "envelope";
-export type AudioParams<Key extends string> = Partial<Record<Key, number>>;
 
 /**
  * An object type to associate a midi note value with a musical note.
@@ -128,5 +128,7 @@ export type MidiPortInterface<TValue> = {
 
 /**
  * MIDI input port interface.
+ *
+ * @public
  */
 export type MidiReceiver = MidiPortInterface<void>;

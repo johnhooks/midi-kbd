@@ -12,7 +12,7 @@ export type KeyCode = typeof UpperKeyboardOrder[number] | typeof LowerKeyboardOr
 /**
  * An object type to associate a {@link KeyCode } with a {@link MidiNote}.
  *
- * @public.
+ * @public
  */
 export type KeyboardMidiMap = { key: KeyCode } & MidiNote;
 

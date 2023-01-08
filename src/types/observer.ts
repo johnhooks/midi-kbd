@@ -17,7 +17,7 @@ type ObserverObj<TValue> = {
 };
 
 /**
- * Observer of {@link "../common/observable.ts" | Observable}.
+ * Observer of {@link Observable}.
  *
  * @public
  */

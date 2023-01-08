@@ -4,9 +4,191 @@
 
 ```ts
 
-// @public (undocumented)
-function (): void;
-export default default_2;
+/// <reference types="webmidi" />
+
+import { BaseActionObject } from 'xstate';
+import { ResolveTypegenMeta } from 'xstate';
+import { ServiceMap } from 'xstate';
+import { StateMachine } from 'xstate';
+import { TypegenDisabled } from 'xstate';
+
+// Warning: (ae-internal-missing-underscore) The name "calcKeyPos" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
+export function calcKeyPos(size: number, spacing: number, offset?: Point): KeyPos[];
+
+// Warning: (ae-internal-missing-underscore) The name "CCModeValues" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
+export const CCModeValues: {
+    readonly AllSoundOff: 120;
+    readonly ResetAll: 121;
+    readonly LocalController: 122;
+    readonly AllNotesOff: 123;
+    readonly OmniOff: 124;
+    readonly OmniOn: 125;
+    readonly MonoOn: 126;
+    readonly PloyOn: 127;
+};
+
+// @public
+export type Channel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
+
+// @public
+export function encodeAllSoundOff(channel: Channel): Uint8Array;
+
+// @public
+export type KeyboardMidiIndex = Map<string, KeyboardMidiMap>;
+
+// @public
+export type KeyboardMidiMap = {
+    key: KeyCode;
+} & MidiNote;
+
+// Warning: (ae-forgotten-export) The symbol "UpperKeyboardOrder" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "LowerKeyboardOrder" needs to be exported by the entry point index.d.ts
+//
+// @public
+export type KeyCode = typeof UpperKeyboardOrder[number] | typeof LowerKeyboardOrder[number];
+
+// @public
+export type KeyPos = Point & {
+    width: number;
+};
+
+// @public
+export abstract class MidiDecoder implements MidiPortInterface<void> {
+    // (undocumented)
+    abstract allNotesOff(channel: Channel): void;
+    // (undocumented)
+    abstract allSoundOff(channel: Channel): void;
+    // (undocumented)
+    abstract channelPressure(channel: Channel, value: number): void;
+    // (undocumented)
+    abstract controlChange(channel: Channel, controller: number, value: number): void;
+    decode(message: Uint8Array): void;
+    // (undocumented)
+    abstract noteOff(channel: Channel, note: number, velocity?: number): void;
+    // (undocumented)
+    abstract noteOn(channel: Channel, note: number, velocity: number): void;
+    // (undocumented)
+    abstract pitchBend(channel: Channel, value: number): void;
+    // (undocumented)
+    abstract polyphonicAfterTouch(channel: Channel, note: number, value: number): void;
+    // (undocumented)
+    abstract programChange(channel: Channel, patchIndex: number): void;
+}
+
+// @public
+export class MidiEncoder implements MidiPortInterface<Uint8Array> {
+    // (undocumented)
+    allNotesOff(channel: Channel): Uint8Array;
+    // (undocumented)
+    allSoundOff(channel: Channel): Uint8Array;
+    // (undocumented)
+    channelPressure(channel: Channel, value: number): Uint8Array;
+    // (undocumented)
+    controlChange(channel: Channel, controller: number, value: number): Uint8Array;
+    // (undocumented)
+    noteOff(channel: Channel, note: number): Uint8Array;
+    // (undocumented)
+    noteOn(channel: Channel, note: number, velocity: number): Uint8Array;
+    // (undocumented)
+    pitchBend(channel: Channel, value: number): Uint8Array;
+    // (undocumented)
+    polyphonicAfterTouch(channel: Channel, note: number, value: number): Uint8Array;
+    // (undocumented)
+    programChange(channel: Channel, patchIndex: number): Uint8Array;
+}
+
+// @public
+export class MidiKeyboard extends Observable<Uint8Array> {
+    // Warning: (ae-forgotten-export) The symbol "Octave_2" needs to be exported by the entry point index.d.ts
+    constructor(channel?: Channel, octave?: Octave_2);
+    handleKeyEvent: (event: KeyboardEvent) => void;
+    // (undocumented)
+    register(): void;
+    // (undocumented)
+    unregister(): void;
+}
+
+// Warning: (ae-forgotten-export) The symbol "Context" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "MidiEvent" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "MidiTypestate" needs to be exported by the entry point index.d.ts
+//
+// @public
+export const midiMachine: StateMachine<Context, any, MidiEvent, MidiTypestate, BaseActionObject, ServiceMap, ResolveTypegenMeta<TypegenDisabled, MidiEvent, BaseActionObject, ServiceMap>>;
+
+// @public
+export type MidiNote = {
+    midi: number;
+    note: string;
+};
+
+// Warning: (ae-internal-missing-underscore) The name "MidiNoteStatus" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal (undocumented)
+export type MidiNoteStatus = typeof StatusByte.NoteOn | typeof StatusByte.NoteOff;
+
+// @public
+export type MidiPortInterface<TValue> = {
+    noteOn(channel: Channel, note: number, velocity: number): TValue;
+    noteOff(channel: Channel, note: number, velocity?: number): TValue;
+    polyphonicAfterTouch(channel: Channel, note: number, value: number): TValue;
+    controlChange(channel: Channel, controller: number, value: number): TValue;
+    programChange(channel: Channel, patchIndex: number): TValue;
+    channelPressure(channel: Channel, value: number): TValue;
+    pitchBend(channel: Channel, value: number): TValue;
+    allSoundOff(channel: Channel): TValue;
+    allNotesOff(channel: Channel): TValue;
+};
+
+// @public
+export type MidiReceiver = MidiPortInterface<void>;
+
+// Warning: (ae-forgotten-export) The symbol "ValueOf" needs to be exported by the entry point index.d.ts
+// Warning: (ae-internal-missing-underscore) The name "MidiStatus" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
+export type MidiStatus = ValueOf<typeof StatusByte>;
+
+// @public
+export class Observable<TValue> {
+    constructor(initialValue: TValue);
+    close(): void;
+    error<TError extends Error>(error: TError): void;
+    next(value: TValue): void;
+    subscribe(listener: Observer<TValue>): () => void;
+    get value(): TValue;
+}
+
+// Warning: (ae-forgotten-export) The symbol "ObserverFn" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "ObserverObj" needs to be exported by the entry point index.d.ts
+//
+// @public
+export type Observer<TValue> = ObserverFn<TValue> | ObserverObj<TValue>;
+
+// @public
+export type Octave = 0 | 1 | 2 | 4 | 5 | 6 | 7 | 8;
+
+// @public
+export type Point = {
+    x: number;
+    y: number;
+};
+
+// Warning: (ae-internal-missing-underscore) The name "StatusByte" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
+export const StatusByte: {
+    readonly NoteOff: 8;
+    readonly NoteOn: 9;
+    readonly AfterTouch: 10;
+    readonly CC: 11;
+    readonly ProgramChange: 12;
+    readonly ChannelPressure: 13;
+    readonly PitchBend: 14;
+};
 
 // (No @packageDocumentation comment for this package)
 

@@ -3,8 +3,8 @@ import type { Observer } from "../types/index.js";
 /**
  * A simple observable class.
  *
- * Intended for use in Svelte. Adding a `subscribe` method to the `Base` class implements the Svelte
- * store contract and enables reactivity by prefixing the `$` character.
+ * Intended for use in Svelte. Implements the Svelte store contract and enables
+ * reactivity by prefixing the `$` character.
  * @public
  */
 export class Observable<TValue> {
