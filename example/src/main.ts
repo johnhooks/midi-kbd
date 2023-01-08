@@ -1,9 +1,10 @@
-import hello from "midi-kbd";
+import "./style.css";
+import { Keyboard } from "./keyboard";
 
-document.querySelector<HTMLDivElement>("#app")!.innerHTML = /* html */ `
-  <div>
-    <p>Hello <code>midi-kbd</code></p>
-  </div>
-`;
+document.addEventListener("DOMContentLoaded", () => {
+	const root = document.querySelector<HTMLDivElement>("#app");
+	if (!root) throw new Error("root element #app is missing");
 
-hello();
+	const keyboard = new Keyboard();
+	root.appendChild(keyboard.el);
+});
