@@ -1,14 +1,13 @@
-import type { Octave } from "../types/index.js";
+import type {
+	KeyCode,
+	KeyboardMidiIndex,
+	KeyboardMidiMap,
+	MidiNote,
+	Octave,
+} from "../types/index.js";
 
-import { UpperKeyboardOrder, LowerKeyboardOrder } from "./constants";
+import { Notes, UpperKeyboardOrder, LowerKeyboardOrder } from "./constants";
 
-type KeyboardKey = typeof UpperKeyboardOrder[number] | typeof LowerKeyboardOrder[number];
-
-type MidiNoteMap = { midi: number; note: string };
-type KeyboardMidiMap = { key: KeyboardKey } & MidiNoteMap;
-type KeyboardMidiIndex = Map<string, KeyboardMidiMap>;
-
-const Notes = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"] as const;
 const MidiNotes = genMidiNotes();
 
 // type Note = typeof Notes[number]
@@ -18,9 +17,9 @@ const MidiNotes = genMidiNotes();
  *
  * @internal
  */
-export function genMidiNotes(): MidiNoteMap[] {
+export function genMidiNotes(): MidiNote[] {
 	// Reference: https://newt.phys.unsw.edu.au/jw/notes.html
-	const list: MidiNoteMap[] = [];
+	const list: MidiNote[] = [];
 	for (let octave = 0; octave < 9; octave++) {
 		for (const [index, note] of Notes.entries()) {
 			list.push({ note: `${note}${octave}`, midi: octave * 12 + 12 + index });
@@ -34,7 +33,7 @@ export function genMidiNotes(): MidiNoteMap[] {
  *
  * @internal
  */
-export function getMidiRange(startNote: string, length: number): MidiNoteMap[] {
+export function getMidiRange(startNote: string, length: number): MidiNote[] {
 	const startIndex = MidiNotes.findIndex((value) => value.note === startNote);
 	if (startIndex === -1) {
 		throw new RangeError(`out of range MIDI note: ${startNote}`);
@@ -70,7 +69,7 @@ export function genKeyboardMidiIndex(
  *
  * @internal
  */
-function genKeyboardMidiMap(octave: Octave, keys: readonly KeyboardKey[]): KeyboardMidiMap[] {
+function genKeyboardMidiMap(octave: Octave, keys: readonly KeyCode[]): KeyboardMidiMap[] {
 	const range = getMidiRange(`C${octave}`, keys.length);
 	const result: KeyboardMidiMap[] = [];
 	for (const [index, midi] of range.entries()) {

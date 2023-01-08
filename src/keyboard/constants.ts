@@ -1,4 +1,13 @@
 /**
+ * Set of musical notes arranged in order, starting with C.
+ *
+ * Using flat to represent occidentals because `b` is a valid JavaScript identifier
+ * character and `#` is not.
+ * @internal
+ */
+export const Notes = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"] as const;
+
+/**
  * The range of keys used for the upper keyboard.
  *
  * @internal

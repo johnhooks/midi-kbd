@@ -1,3 +1,4 @@
-export default function () {
-	console.log("Hello midi-kbd, let's build!");
-}
+export * from "./keyboard/index.js";
+export * from "./midi/index.js";
+export * from "./types/index.js";
+export * from "./ui/index.js";

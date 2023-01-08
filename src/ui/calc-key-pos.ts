@@ -13,6 +13,8 @@ const structure = [
 /**
  * Calculate positions and width of keyboard keys.
  *
+ * Intended to be used to draw the 4 primary rows of a computer keyboard, plus the
+ * space bar.
  * @internal
  */
 export function calcKeyPos(size: number, spacing: number, offset: Point = { x: 0, y: 0 }) {
@@ -47,6 +49,8 @@ export function calcKeyPos(size: number, spacing: number, offset: Point = { x: 0
 }
 
 /**
+ * Create an array of a specific `size`, initialized with a `value`.
+ *
  * @internal
  */
 function fill(length: number, value = 1): number[] {
