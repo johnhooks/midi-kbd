@@ -12,6 +12,8 @@ const structure = [
 
 /**
  * Calculate positions and width of keyboard keys.
+ *
+ * @internal
  */
 export function calcKeyPos(size: number, spacing: number, offset: Point = { x: 0, y: 0 }) {
 	const result: KeyPos[] = [];
@@ -44,6 +46,9 @@ export function calcKeyPos(size: number, spacing: number, offset: Point = { x: 0
 	return result;
 }
 
+/**
+ * @internal
+ */
 function fill(length: number, value = 1): number[] {
 	return Array.from({ length }, () => value);
 }

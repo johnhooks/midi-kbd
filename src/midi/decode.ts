@@ -6,8 +6,8 @@ import { CHANNEL_MASK, DATA_MASK } from "./constants.js";
 /**
  * MIDI Decoder Abstract Class.
  *
- * The intent is to directly call the abstract methods, rather than create an over elaborate
- * MIDI event system.
+ * The intent is to directly call the abstract methods, rather than create an over
+ * elaborate MIDI event system.
  * @public
  */
 export abstract class MidiDecoder implements MidiPortInterface<void> {
@@ -19,6 +19,9 @@ export abstract class MidiDecoder implements MidiPortInterface<void> {
 	 */
 	#status = 0;
 
+	/**
+	 * Decode a binary MIDI message.
+	 */
 	decode(message: Uint8Array) {
 		const byte = message[0];
 		const runningStatus = byte >> 7 === 0;

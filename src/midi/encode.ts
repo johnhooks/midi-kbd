@@ -85,6 +85,8 @@ export function encodeAllSoundOff(channel: Channel) {
 
 /**
  * Clamp `value` to an unsigned 7 bit integer.
+ *
+ * @internal
  */
 function u7(value: number): number {
 	return Math.max(0, Math.min(127, value)) || 0;
@@ -92,6 +94,8 @@ function u7(value: number): number {
 
 /**
  * Clamp `value` to an unsigned 14 bit integer.
+ *
+ * @internal
  */
 function u14(value: number): number {
 	return Math.max(0, Math.min(16383, value)) || 0;
@@ -102,6 +106,7 @@ function u14(value: number): number {
  *
  * @param channel - The MIDI channel of the message.
  * @param value - The pitch bend value. Clamped to u14.
+ * @internal
  */
 function encodePitchBend(channel: Channel, value: number): Uint8Array {
 	const clamped = u14(value);
@@ -116,6 +121,8 @@ function encodePitchBend(channel: Channel, value: number): Uint8Array {
 
 /**
  * Encode Midi message.
+ *
+ * @internal
  */
 function encode(...data: [number, number]): Uint8Array;
 function encode(status: MidiStatus, channel: Channel, ...data: [number]): Uint8Array;

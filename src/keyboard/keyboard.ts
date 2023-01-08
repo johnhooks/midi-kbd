@@ -4,6 +4,12 @@ import type { Channel } from "../types/index.js";
 
 import { genKeyboardMidiIndex } from "./helpers.js";
 
+/**
+ * Octave range type.
+ *
+ * 1 based index
+ * @public
+ */
 type Octave = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 // TODO Break out the keyevent listener so it can be used without interpreting it as MIDI.
@@ -34,6 +40,9 @@ export class MidiKeyboard extends Observable<Uint8Array> {
 		this.#keyboardMidiIndex = genKeyboardMidiIndex(this.#octave);
 	}
 
+	/**
+	 * Keyboard event handler.
+	 */
 	handleKeyEvent = (event: KeyboardEvent) => {
 		if (event.defaultPrevented) {
 			return; // Do nothing if event already handled
