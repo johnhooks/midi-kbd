@@ -2,7 +2,7 @@ import { Observable } from "rxjs";
 
 import type { KeyEvent, KeyboardEvent, KeyboardCode } from "../types/index.js";
 
-import { KeyboardNotes } from "./constants.js";
+import { KeyboardNoteCodes } from "./constants.js";
 
 /**
  * @internal
@@ -28,5 +28,5 @@ export function filterKeyboardEvents() {
 }
 
 function isKeyboardEvent(event: KeyEvent): event is KeyboardEvent {
-	return KeyboardNotes.has(event.code as KeyboardCode);
+	return KeyboardNoteCodes.has(event.code as KeyboardCode);
 }

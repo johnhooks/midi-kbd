@@ -6,10 +6,9 @@ import { ValueOf } from "./utils.js";
 /**
  * Union of all keyboard event codes handled by the keyboard controller.
  *
- * `All` to be used for initial keyboard observable value, {code: 'All', type: 'down'}
  * @public
  */
-export type KeyCode = ValueOf<typeof KeyCodes> | "All";
+export type KeyCode = ValueOf<typeof KeyCodes>;
 
 /**
  * Union of all keyboard event codes that trigger a note on/off event.

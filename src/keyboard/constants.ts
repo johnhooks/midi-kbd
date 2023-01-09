@@ -97,7 +97,7 @@ export const LowerKeyboardNoteOrder = [
 	"Slash",
 ] as const;
 
-export const KeyboardNotes = new Set([...UpperKeyboardNoteOrder, ...LowerKeyboardNoteOrder]);
+export const KeyboardNoteCodes = new Set([...UpperKeyboardNoteOrder, ...LowerKeyboardNoteOrder]);
 
 const KeyboardRowOne = [
 	"Backquote",

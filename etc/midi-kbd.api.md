@@ -37,19 +37,38 @@ export type Channel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 
 // @public
 export function encodeAllSoundOff(channel: Channel): Uint8Array;
 
+// Warning: (ae-forgotten-export) The symbol "UpperKeyboardNoteOrder" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "LowerKeyboardNoteOrder" needs to be exported by the entry point index.d.ts
+//
+// @public
+export type KeyboardCode = typeof UpperKeyboardNoteOrder[number] | typeof LowerKeyboardNoteOrder[number];
+
+// @public
+type KeyboardEvent_2 = {
+    code: KeyboardCode;
+    type: "up" | "down";
+};
+export { KeyboardEvent_2 as KeyboardEvent }
+
 // @public
 export type KeyboardMidiIndex = Map<string, KeyboardMidiMap>;
 
 // @public
 export type KeyboardMidiMap = {
-    key: KeyCode;
+    key: KeyboardCode;
 } & MidiNote;
 
-// Warning: (ae-forgotten-export) The symbol "UpperKeyboardOrder" needs to be exported by the entry point index.d.ts
-// Warning: (ae-forgotten-export) The symbol "LowerKeyboardOrder" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "KeyCodes" needs to be exported by the entry point index.d.ts
+// Warning: (ae-incompatible-release-tags) The symbol "KeyCode" is marked as @public, but its signature references "ValueOf" which is marked as @internal
 //
 // @public
-export type KeyCode = typeof UpperKeyboardOrder[number] | typeof LowerKeyboardOrder[number];
+export type KeyCode = ValueOf<typeof KeyCodes>;
+
+// @public
+export type KeyEvent = {
+    code: KeyCode;
+    type: "up" | "down";
+};
 
 // @public
 export type KeyPos = Point & {
@@ -102,6 +121,11 @@ export class MidiEncoder implements MidiPortInterface<Uint8Array> {
 }
 
 // @public
+export type MidiEvent = MidiNote & {
+    type: "on" | "off";
+};
+
+// @public
 export class MidiKeyboard extends Observable<Uint8Array> {
     // Warning: (ae-forgotten-export) The symbol "Octave_2" needs to be exported by the entry point index.d.ts
     constructor(channel?: Channel, octave?: Octave_2);
@@ -113,11 +137,11 @@ export class MidiKeyboard extends Observable<Uint8Array> {
 }
 
 // Warning: (ae-forgotten-export) The symbol "Context" needs to be exported by the entry point index.d.ts
-// Warning: (ae-forgotten-export) The symbol "MidiEvent" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "MidiEvent_2" needs to be exported by the entry point index.d.ts
 // Warning: (ae-forgotten-export) The symbol "MidiTypestate" needs to be exported by the entry point index.d.ts
 //
 // @public
-export const midiMachine: StateMachine<Context, any, MidiEvent, MidiTypestate, BaseActionObject, ServiceMap, ResolveTypegenMeta<TypegenDisabled, MidiEvent, BaseActionObject, ServiceMap>>;
+export const midiMachine: StateMachine<Context, any, MidiEvent_2, MidiTypestate, BaseActionObject, ServiceMap, ResolveTypegenMeta<TypegenDisabled, MidiEvent_2, BaseActionObject, ServiceMap>>;
 
 // @public
 export type MidiNote = {
@@ -146,7 +170,6 @@ export type MidiPortInterface<TValue> = {
 // @public
 export type MidiReceiver = MidiPortInterface<void>;
 
-// Warning: (ae-forgotten-export) The symbol "ValueOf" needs to be exported by the entry point index.d.ts
 // Warning: (ae-internal-missing-underscore) The name "MidiStatus" should be prefixed with an underscore because the declaration is marked as @internal
 //
 // @internal
@@ -189,6 +212,11 @@ export const StatusByte: {
     readonly ChannelPressure: 13;
     readonly PitchBend: 14;
 };
+
+// Warning: (ae-internal-missing-underscore) The name "ValueOf" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
+export type ValueOf<T> = T[keyof T];
 
 // (No @packageDocumentation comment for this package)
 
