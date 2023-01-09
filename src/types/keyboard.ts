@@ -28,7 +28,7 @@ export type KeyboardCode =
  */
 export type KeyEvent = {
 	code: KeyCode;
-	type: "up" | "down";
+	type: "off" | "on";
 };
 
 /**
@@ -38,7 +38,7 @@ export type KeyEvent = {
  */
 export type KeyboardEvent = {
 	code: KeyboardCode;
-	type: "up" | "down";
+	type: "off" | "on";
 };
 
 /**

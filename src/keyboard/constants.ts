@@ -114,7 +114,7 @@ const KeyboardRowOne = [
 	// TODO make sure Minus and Equal are right.
 	"Minus",
 	"Equal",
-	"Delete",
+	"Backspace",
 ] as const;
 
 const KeyboardRowTwo = [

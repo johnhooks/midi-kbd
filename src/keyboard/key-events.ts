@@ -20,9 +20,9 @@ export const keyEvents = new Observable<KeyEvent>((subscriber) => {
 		}
 
 		if (event.type === "keydown") {
-			subscriber.next({ code, type: "down" });
+			subscriber.next({ code, type: "on" });
 		} else if (event.type === "keyup") {
-			subscriber.next({ code, type: "up" });
+			subscriber.next({ code, type: "off" });
 		}
 	}
 

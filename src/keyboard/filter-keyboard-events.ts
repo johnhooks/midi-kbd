@@ -8,12 +8,25 @@ import { KeyboardNoteCodes } from "./constants.js";
  * @internal
  */
 export function filterKeyboardEvents() {
+	const down = new Map<string, boolean>();
+
 	return function (source: Observable<KeyEvent>): Observable<KeyboardEvent> {
 		return new Observable((subscriber) => {
 			source.subscribe({
-				next(value) {
-					if (isKeyboardEvent(value)) {
-						subscriber.next(value);
+				next(event) {
+					if (isKeyboardEvent(event)) {
+						if (event.type === "on") {
+							if (down.get(event.code)) {
+								// key already depressed
+								return;
+							} else {
+								down.set(event.code, true);
+								subscriber.next(event);
+							}
+						} else if (event.type === "off") {
+							down.set(event.code, false);
+							subscriber.next(event);
+						}
 					}
 				},
 				error(error) {

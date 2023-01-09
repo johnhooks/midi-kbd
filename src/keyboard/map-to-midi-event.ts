@@ -23,7 +23,9 @@ export function mapToMidiEvent(octave: Octave = 4) {
 			source.subscribe({
 				next({ type, code }) {
 					const keyMap = keyboardIndex.get(code);
-					if (keyMap) return { ...keyMap, type };
+					if (keyMap) {
+						subscriber.next({ ...keyMap, type });
+					}
 				},
 				error(error) {
 					subscriber.error(error);
