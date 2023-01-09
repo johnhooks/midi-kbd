@@ -1,7 +1,6 @@
 import {
 	calcKeyPos,
 	filterKeyboardEvents,
-	KeyCode,
 	KeyCodes,
 	keyEvents,
 	mapToMidiEvent,
@@ -21,6 +20,7 @@ export class Keyboard {
 	#size = 32;
 	#spacing = 8;
 	#initialized = false;
+
 	#refs: Map<typeof KeyCodes[number], SVGRectElement> = new Map();
 
 	readonly el: SVGElement;
@@ -78,18 +78,40 @@ export class Keyboard {
 			}
 		}
 
+		const osc = new Tone.FatOscillator("Ab3", "sawtooth", 40).start();
+
+		const envelope = new Tone.AmplitudeEnvelope({
+			attack: 0.1,
+			decay: 0.1,
+			sustain: 0.1,
+			release: 0.5,
+		});
+
+		const lfo = new Tone.LFO({ frequency: "4m", min: 400, max: 4000, amplitude: 0.7 }).start();
+
+		const filter = new Tone.Filter(2000, "lowpass");
+
+		lfo.connect(filter.frequency);
+		osc.connect(envelope);
+		envelope.connect(filter);
+
 		const playButton = document.querySelector("#play-icon");
+		const stopButton = document.querySelector("#stop-icon");
 
 		if (playButton) {
 			const handleClick: EventListenerOrEventListenerObject = async (e) => {
-				if (this.#initialized) return;
-				this.#initialized = true;
+				if (!this.#initialized) {
+					await Tone.start();
+					filter.toDestination();
+					this.#initialized = true;
+				}
 
 				e.preventDefault();
-				await Tone.start();
-				const synth = new Tone.Synth().toDestination();
 
-				synth.triggerAttackRelease("C4", "4n");
+				playButton.classList.add("hidden");
+				stopButton?.classList.remove("hidden");
+
+				Tone.getDestination().mute = false;
 
 				keyEvents.subscribe((event) => {
 					const el = this.#refs.get(event.code as typeof KeyCodes[number]);
@@ -101,21 +123,54 @@ export class Keyboard {
 					}
 				});
 
+				let notes: number[] = [];
+
+				// initially empty. don't know if that will work.
+				const pattern = new Tone.Pattern<number>({
+					interval: "120i",
+					values: notes,
+					pattern: "upDown",
+					callback: (time, note) => {
+						if (!note) return;
+						osc.frequency.value = note;
+						envelope.triggerAttackRelease("8n.", time);
+					},
+				});
+
+				Tone.Transport.start();
+
 				keyEvents
 					.pipe(filterKeyboardEvents())
-					.pipe(mapToMidiEvent())
+					.pipe(mapToMidiEvent(6))
 					.subscribe((event) => {
-						// const now = Tone.now();
-						// if (event.type === "off") {
-						// 	synth.triggerRelease(now);
-						// } else if (event.type === "on") {
-						// 	synth.triggerAttack(event.note, now);
-						// }
+						if (event.type === "off") {
+							// This doesn't account for multiple keys presses of the same note.
+							// Need to actually differentiate keys.
+							notes = notes.filter((note) => note !== event.midi);
+							if (notes.length === 0) pattern.stop(0);
+							pattern.values = notes;
+						} else if (event.type === "on") {
+							notes.push(event.midi);
+							pattern.values = notes;
+							pattern.start("1i");
+						}
 					});
+
 				console.log("audio is ready");
 			};
 
 			playButton.addEventListener("click", handleClick);
+		}
+
+		if (stopButton) {
+			const handleClick: EventListenerOrEventListenerObject = async (e) => {
+				e.preventDefault();
+				Tone.getDestination().mute = true;
+				playButton?.classList.remove("hidden");
+				stopButton?.classList.add("hidden");
+			};
+
+			stopButton.addEventListener("click", handleClick);
 		}
 	}
 }

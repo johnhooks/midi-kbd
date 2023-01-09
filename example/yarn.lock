@@ -119,6 +119,11 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.16.15.tgz#e28277cdbc1c9cde2b982c814d05f44d4b1f0580"
   integrity sha512-27h5GCcbfomVAqAnMJWvR1LqEY0dFqIq4vTe5nY3becnZNu0SX8F0+gTk3JPvgWQHzaGc6VkPzlOiMkdSUunUA==
 
+"@types/webmidi@^2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@types/webmidi/-/webmidi-2.0.6.tgz#c9b1428bbc5d5f49cc6201eae0dc5e2b3fd23e0e"
+  integrity sha512-sfS0A5IryqmBrUpcGPipEPeFdpqmZzP6b6lZFxHKgz5n2Vhzh4yJ5P2TvoDUhDjqJyv0Y25ng0Qodgo2Vu08ug==
+
 automation-events@^4.0.25:
   version "4.0.25"
   resolved "https://registry.yarnpkg.com/automation-events/-/automation-events-4.0.25.tgz#f38399a3069eb1b53adf2bba247e1da9e3a1de46"
@@ -126,6 +131,13 @@ automation-events@^4.0.25:
   dependencies:
     "@babel/runtime" "^7.20.6"
     tslib "^2.4.1"
+
+djipevents@^2.0.7:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/djipevents/-/djipevents-2.0.7.tgz#4805dcb8dcf0b4a2c6e51eaecdfc218bb8f202fb"
+  integrity sha512-KNFYaU85imxOCKOUsIR70Iz9E19r96/X7LSH+u0tSoZdpWcBdzoqtTsU+wuLhc6GMpSFob+KInkZAbfKi01Bjg==
+  dependencies:
+    "@babel/runtime" "^7.20.6"
 
 esbuild@^0.16.3:
   version "0.16.15"
@@ -178,6 +190,19 @@ is-core-module@^2.9.0:
   integrity sha512-RRjxlvLDkD1YJwDbroBHMb+cukurkDWNyHx7D3oNB5x9rb5ogcksMC5wHCadcXoo67gVr/+3GFySh3134zi6rw==
   dependencies:
     has "^1.0.3"
+
+jazz-midi@^1.7.9:
+  version "1.7.9"
+  resolved "https://registry.yarnpkg.com/jazz-midi/-/jazz-midi-1.7.9.tgz#ad564e85acf12414aec7ef7d879ad61a5d7f6896"
+  integrity sha512-c8c4BBgwxdsIr1iVm53nadCrtH7BUlnX3V95ciK/gbvXN/ndE5+POskBalXgqlc/r9p2XUbdLTrgrC6fou5p9w==
+
+jzz@^1.5.6:
+  version "1.5.8"
+  resolved "https://registry.yarnpkg.com/jzz/-/jzz-1.5.8.tgz#44cd7bbddd29158fa9e6b283681d170c84a70b2f"
+  integrity sha512-Fpnd75txPFaytHSJMR4LbcId8vkzS9sarxGIU2OqvmuqUMte0txGOSg1+/V4lTYJmR6Br2UcvIrwu28ewb5eFQ==
+  dependencies:
+    "@types/webmidi" "^2.0.6"
+    jazz-midi "^1.7.9"
 
 nanoid@^3.3.4:
   version "3.3.4"
@@ -243,7 +268,7 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-tone@^14.7.77:
+tone@14.7.77:
   version "14.7.77"
   resolved "https://registry.yarnpkg.com/tone/-/tone-14.7.77.tgz#12a2a9f033952ccdb552275a6384ca5d36d4b5ed"
   integrity sha512-tCfK73IkLHyzoKUvGq47gyDyxiKLFvKiVCOobynGgBB9Dl0NkxTM2p+eRJXyCYrjJwy9Y0XCMqD3uOYsYt2Fdg==
@@ -272,3 +297,12 @@ vite@4.0.4:
     rollup "^3.7.0"
   optionalDependencies:
     fsevents "~2.3.2"
+
+webmidi@^3.0.25:
+  version "3.0.25"
+  resolved "https://registry.yarnpkg.com/webmidi/-/webmidi-3.0.25.tgz#7d964f5bb9b1d9ae6f787a2927c873d7407da026"
+  integrity sha512-DWXcfuJLhCEJAQaICMnjyhCGH8pVxiXgUwQlr5+SnYp5IOvL/PJJQwlXcWPE4kPfNXlWqi/bn+lAaZW3PwNO8Q==
+  dependencies:
+    djipevents "^2.0.7"
+  optionalDependencies:
+    jzz "^1.5.6"

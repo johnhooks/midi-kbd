@@ -1,9 +1,11 @@
 :root {
 	--dark-gray: #1b1b1b;
-	--light-gray: #d0d0d0;
+	--light-gray: rgb(208, 208, 208);
 	--white: #f6f6f6;
 	--md-gray: rgb(77, 80, 87);
 	--dark-blue: #222630;
+	--violet: rgb(225, 138, 232);
+	--dark-violet: rgb(225, 128, 232);
 	--bg-color: var(--dark-blue);
 	--fg-color: var(--light-gray);
 	--key-fill: var(--light-gray);
@@ -49,13 +51,7 @@ rect.key.pressed {
 	position: relative;
 }
 
-.container {
-	margin: 0 auto;
-	padding-left: 1rem;
-	padding-right: 1rem;
-}
-
-.play-icon {
+#play-control > .icon {
 	width: 64px;
 	height: 64px;
 	stroke: violet;
@@ -64,6 +60,16 @@ rect.key.pressed {
 
 	transition-property: transform, fill;
 	transition-duration: 250ms;
+}
+
+.container {
+	margin: 0 auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.hidden {
+	display: none;
 }
 
 @media (min-width: 720px) {
