@@ -34,8 +34,9 @@
 		"test": "vitest run"
 	},
 	"dependencies": {
-    "xstate": "4.35.1"
-  },
+		"rxjs": "^7.8.0",
+		"xstate": "4.35.1"
+	},
 	"devDependencies": {
 		"@microsoft/api-documenter": "7.19.27",
 		"@microsoft/api-extractor": "7.33.7",

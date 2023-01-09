@@ -24,6 +24,14 @@ rect.key {
 	stroke: #999;
 	fill: transparent;
 	stroke-width: 1px;
+
+	transition-property: transform, fill;
+	transition-duration: 250ms;
+}
+
+rect.key.pressed {
+	fill: red; /* TODO Remove */
+	transform: translateY(3px);
 }
 
 .container {

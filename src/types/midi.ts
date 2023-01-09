@@ -67,6 +67,13 @@ export type MidiNoteStatus = typeof StatusByte.NoteOn | typeof StatusByte.NoteOf
 export type MidiNote = { midi: number; note: string };
 
 /**
+ * An object type representing a MIDI input event.
+ *
+ * @public
+ */
+export type MidiEvent = MidiNote & { type: "on" | "off" };
+
+/**
  * MIDI port interface.
  *
  * Intended to a direct interface to instrument or controller, as opposed to casting

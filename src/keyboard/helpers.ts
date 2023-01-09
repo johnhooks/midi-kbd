@@ -1,12 +1,12 @@
 import type {
-	KeyCode,
+	KeyboardCode,
 	KeyboardMidiIndex,
 	KeyboardMidiMap,
 	MidiNote,
 	Octave,
 } from "../types/index.js";
 
-import { Notes, UpperKeyboardOrder, LowerKeyboardOrder } from "./constants";
+import { Notes, UpperKeyboardNoteOrder, LowerKeyboardNoteOrder } from "./constants";
 
 const MidiNotes = genMidiNotes();
 
@@ -55,8 +55,8 @@ export function genKeyboardMidiIndex(
 	upperOctave: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 ): KeyboardMidiIndex {
 	const lowerOctave = upperOctave - 1;
-	const upper = genKeyboardMidiMap(upperOctave as Octave, UpperKeyboardOrder);
-	const lower = genKeyboardMidiMap(lowerOctave as Octave, LowerKeyboardOrder);
+	const upper = genKeyboardMidiMap(upperOctave as Octave, UpperKeyboardNoteOrder);
+	const lower = genKeyboardMidiMap(lowerOctave as Octave, LowerKeyboardNoteOrder);
 	const map: KeyboardMidiIndex = new Map();
 	for (const { key, ...rest } of [...upper, ...lower]) {
 		map.set(key, { key, ...rest });
@@ -69,7 +69,7 @@ export function genKeyboardMidiIndex(
  *
  * @internal
  */
-function genKeyboardMidiMap(octave: Octave, keys: readonly KeyCode[]): KeyboardMidiMap[] {
+function genKeyboardMidiMap(octave: Octave, keys: readonly KeyboardCode[]): KeyboardMidiMap[] {
 	const range = getMidiRange(`C${octave}`, keys.length);
 	const result: KeyboardMidiMap[] = [];
 	for (const [index, midi] of range.entries()) {

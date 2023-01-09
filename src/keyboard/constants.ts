@@ -12,7 +12,7 @@ export const Notes = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb"
  *
  * @internal
  */
-export const UpperKeyboardOrder = [
+export const UpperKeyboardNoteOrder = [
 	// C0
 	"KeyQ",
 	// Db0
@@ -60,7 +60,7 @@ export const UpperKeyboardOrder = [
  *
  * @internal
  */
-export const LowerKeyboardOrder = [
+export const LowerKeyboardNoteOrder = [
 	// C0
 	"KeyZ",
 	// Db0
@@ -95,4 +95,101 @@ export const LowerKeyboardOrder = [
 	"Semicolon",
 	// E
 	"Slash",
+] as const;
+
+export const KeyboardNotes = new Set([...UpperKeyboardNoteOrder, ...LowerKeyboardNoteOrder]);
+
+const KeyboardRowOne = [
+	"Backquote",
+	"Digit1",
+	"Digit2",
+	"Digit3",
+	"Digit4",
+	"Digit5",
+	"Digit6",
+	"Digit7",
+	"Digit8",
+	"Digit9",
+	"Digit0",
+	// TODO make sure Minus and Equal are right.
+	"Minus",
+	"Equal",
+	"Delete",
+] as const;
+
+const KeyboardRowTwo = [
+	"Tab",
+	"KeyQ",
+	"KeyW",
+	"KeyE",
+	"KeyR",
+	"KeyT",
+	"KeyY",
+	"KeyU",
+	"KeyI",
+	"KeyO",
+	"KeyP",
+	"BracketLeft",
+	"BracketRight",
+	"Backslash",
+] as const;
+
+const KeyboardRowThree = [
+	"CapLock",
+	"KeyA",
+	"KeyS",
+	"KeyD",
+	"KeyF",
+	"KeyG",
+	"KeyH",
+	"KeyJ",
+	"KeyK",
+	"KeyL",
+	"Semicolon",
+	// TODO make sure Quote is right
+	"Quote",
+	"Enter",
+] as const;
+
+const KeyboardRowFour = [
+	"ShiftLeft",
+	"KeyZ",
+	"KeyX",
+	"KeyC",
+	"KeyV",
+	"KeyB",
+	"KeyN",
+	"KeyM",
+	"Comma",
+	"Period",
+	"Slash",
+	"ShiftRight",
+] as const;
+
+const KeyboardRowFive = ["Space"] as const;
+
+/**
+ * A matrix of keyboard event codes in the order of a physical computer keyboard.
+ *
+ * @internal
+ */
+export const KeyboardKeyOrder = [
+	KeyboardRowOne,
+	KeyboardRowTwo,
+	KeyboardRowThree,
+	KeyboardRowFour,
+	KeyboardRowFive,
+] as const;
+
+/**
+ * A set of all keyboard event codes used by `midi-kbd`.
+ *
+ * @internal
+ */
+export const KeyCodes = [
+	...KeyboardRowOne,
+	...KeyboardRowTwo,
+	...KeyboardRowThree,
+	...KeyboardRowFour,
+	...KeyboardRowFive,
 ] as const;
