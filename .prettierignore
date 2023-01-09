@@ -3,6 +3,7 @@ node_modules
 
 build
 dist
+docs
 temp
 
 **/*.md
