@@ -32,10 +32,6 @@ jobs:
       - name: Build application
         uses: ./.github/actions/build
 
-      - name: Install Website Packages
-        shell: bash
-        run: yarn --cwd ./website install --frozen-lockfile
-
       - name: Build website
         shell: bash
         run: yarn build:website
@@ -44,7 +40,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./website/build
+          path: ./website/dist
 
   # Deploy job
   deploy:

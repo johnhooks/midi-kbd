@@ -32,6 +32,10 @@ runs:
       shell: bash
       run: yarn install --frozen-lockfile
 
+    - name: Install Webites Packages
+      shell: bash
+      run: yarn --cwd ./website install --frozen-lockfile
+
     - name: Build application
       shell: bash
       run: yarn build
