@@ -1,11 +1,11 @@
 .DS_Store
 node_modules
 
-/build
-/dist
-/temp
+build
+dist
+temp
 
-/example/dist
+/website/dist
 
 .env
 .env.*
