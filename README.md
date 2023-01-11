@@ -20,7 +20,7 @@ yarn add midi-kbd
 
 This is still a work in progress.
 
-Though if you want to checkout an example of what it is/or could be, you can see it in action here, [johnhooks/midi-kbd](https://johnhooks/midi-kbd).
+Though if you want to checkout an example of what it is/or could be, you can see it in action here, [johnhooks/midi-kbd](https://johnhooks.io/midi-kbd).
 
 <!--
 
