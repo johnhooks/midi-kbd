@@ -63,7 +63,7 @@ jobs:
         run: yarn run shipjs trigger
 
   website:
-    need: build
+    needs: build
     runs-on: ubuntu-latest
     environment: production
     steps:
