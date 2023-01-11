@@ -1,0 +1,114 @@
+name: On push
+
+on:
+  # Runs on pushes targeting the main branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+env:
+  # Used by scripts/build-types
+  CI: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js and Yarn
+        uses: ./.github/actions/node
+
+      - name: Build package
+        uses: ./.github/actions/build
+
+      - name: Archive build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pkg-build-${{ github.run_id }}
+          path: |
+            build
+            dist
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js and Yarn
+        uses: ./.github/actions/node
+
+      - name: Download the build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: pkg-build-${{ github.run_id }}
+
+      - name: Release if needed
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        shell: bash
+        run: yarn run shipjs trigger
+
+  website:
+    need: build
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js and Yarn
+        uses: ./.github/actions/node
+
+      - name: Download the build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: pkg-build-${{ github.run_id }}
+
+      - name: Build website
+        shell: bash
+        run: yarn build:website
+
+      # This action uploads an artifact named `github-pages` which will be used by actions/deploy-pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./website/dist
+
+  pages:
+    # Only deploy if the string '(website)' is in the commit message. NOTE not a RegExp
+    if: "contains(github.event.head_commit.message, '(website)')"
+
+    # Add a dependency to the build job
+    needs: website
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      contents: read
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
