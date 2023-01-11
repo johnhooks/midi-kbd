@@ -1,4 +1,6 @@
 module.exports = {
+	buildCommand: () => null,
+
 	publishCommand({ tag }) {
 		return `yarn publish --access public --tag ${tag}`;
 	},

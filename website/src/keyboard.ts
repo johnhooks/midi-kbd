@@ -77,26 +77,32 @@ export class Keyboard {
 				el.classList.add("accidental");
 			}
 		}
-
-		const osc = new Tone.FatOscillator("Ab3", "sawtooth", 40).start();
+		// 	const vol = new Tone.Volume(-12).toDestination();
+		const osc = new Tone.FatOscillator("Ab3", "sawtooth").start();
 
 		const envelope = new Tone.AmplitudeEnvelope({
 			attack: 0.1,
-			decay: 0.1,
-			sustain: 0.1,
-			release: 0.5,
+			decay: 0.2,
+			sustain: 0.9,
+			release: 0.2,
 		});
 
-		const lfo = new Tone.LFO({ frequency: "4m", min: 400, max: 4000, amplitude: 0.7 }).start();
+		// const lfo = new Tone.LFO({ frequency: 2000, min: 400, max: 4000, amplitude: 0.5 }).start();
 
-		const filter = new Tone.Filter(2000, "lowpass");
+		const filter = new Tone.Filter(4000, "lowpass");
 
-		lfo.connect(filter.frequency);
+		// lfo.connect(filter.frequency);
 		osc.connect(envelope);
 		envelope.connect(filter);
 
 		const playButton = document.querySelector("#play-icon");
 		const stopButton = document.querySelector("#stop-icon");
+
+		addEventListener("blur", () => {
+			Tone.getDestination().mute = true;
+			playButton?.classList.remove("hidden");
+			stopButton?.classList.add("hidden");
+		});
 
 		if (playButton) {
 			const handleClick: EventListenerOrEventListenerObject = async (e) => {
@@ -123,37 +129,48 @@ export class Keyboard {
 					}
 				});
 
-				let notes: number[] = [];
+				// const notes: number[] = [];
 
 				// initially empty. don't know if that will work.
-				const pattern = new Tone.Pattern<number>({
-					interval: "120i",
-					values: notes,
-					pattern: "upDown",
-					callback: (time, note) => {
-						if (!note) return;
-						osc.frequency.value = note;
-						envelope.triggerAttackRelease("8n.", time);
-					},
-				});
+				// const pattern = new Tone.Pattern<number>({
+				// 	interval: "120i",
+				// 	values: notes,
+				// 	pattern: "upDown",
+				// 	callback: (time, note) => {
+				// 		if (!note) return;
+				// 		osc.frequency.value = note;
+				// 		envelope.triggerAttackRelease("8n.", time);
+				// 	},
+				// });
 
-				Tone.Transport.start();
+				// Tone.Transport.start();
+
+				let note = 128;
 
 				keyEvents
 					.pipe(filterKeyboardEvents())
-					.pipe(mapToMidiEvent(6))
+					.pipe(mapToMidiEvent(7))
 					.subscribe((event) => {
 						if (event.type === "off") {
-							// This doesn't account for multiple keys presses of the same note.
-							// Need to actually differentiate keys.
-							notes = notes.filter((note) => note !== event.midi);
-							if (notes.length === 0) pattern.stop(0);
-							pattern.values = notes;
+							if (event.midi === note) {
+								envelope.triggerRelease();
+							}
 						} else if (event.type === "on") {
-							notes.push(event.midi);
-							pattern.values = notes;
-							pattern.start("1i");
+							note = event.midi;
+							osc.frequency.value = note;
+							envelope.triggerAttack();
 						}
+						// if (event.type === "off") {
+						// 	// This doesn't account for multiple keys presses of the same note.
+						// 	// Need to actually differentiate keys.
+						// 	notes = notes.filter((note) => note !== event.midi);
+						// 	if (notes.length === 0) pattern.stop(0);
+						// 	pattern.values = notes;
+						// } else if (event.type === "on") {
+						// 	notes.push(event.midi);
+						// 	pattern.values = notes;
+						// 	pattern.start("1i");
+						// }
 					});
 
 				console.log("audio is ready");
