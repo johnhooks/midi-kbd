@@ -7,7 +7,11 @@ if (!process.env.CI) {
 }
 
 try {
-	await exec("yarn", ["build:tsc"]);
+	if (process.env.NODE_ENV === "production") {
+		await exec("yarn", ["build:tsc"]);
+	} else {
+		await exec("yarn", ["build:tsc", "./src/tsconfig.dev.json"]);
+	}
 	await exec("yarn", ["build:esm"]);
 	await exec("yarn", ["build:types"]);
 } catch (code) {

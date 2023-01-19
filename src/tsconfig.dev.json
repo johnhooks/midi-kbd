@@ -1,7 +1,9 @@
 {
 	"extends": "./tsconfig.base",
 	"compilerOptions": {
-		"emitDeclarationOnly": true
+		"sourceMap": true,
+		"declarationMap": true,
+		"emitDeclarationOnly": false
 	},
 	"include": ["**/*"]
 }
