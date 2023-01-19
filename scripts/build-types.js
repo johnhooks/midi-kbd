@@ -12,11 +12,11 @@ const localFlag = process.env.CI ? [] : ["--local"];
 /**
  * ApiExtractor CLI arguments.
  */
-const apiExtractorArgs = ["exec", "api-extractor", "run", ...args, ...localFlag];
+const apiExtractorArgs = ["run", ...args, ...localFlag];
 
-console.log(`yarn ${apiExtractorArgs.join(" ")}`);
+console.log(`api-extractor ${apiExtractorArgs.join(" ")}`);
 
-exec("yarn", apiExtractorArgs)
+exec("yarn", ["exec", "api-extractor", ...apiExtractorArgs])
 	.then(() => process.exit(0))
 	.catch((code) => {
 		process.exit(code);

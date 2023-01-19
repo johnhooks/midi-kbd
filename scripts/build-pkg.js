@@ -7,7 +7,7 @@ if (!process.env.CI) {
 }
 
 try {
-	if (process.env.NODE_ENV === "production") {
+	if (process.env.CI === true) {
 		await exec("yarn", ["build:tsc"]);
 	} else {
 		await exec("yarn", ["build:tsc", "./src/tsconfig.dev.json"]);
