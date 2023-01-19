@@ -3,7 +3,7 @@
     <img
       alt="Preview of computer keyboard overlaid with musical notes"
       src="https://raw.githubusercontent.com/johnhooks/midi-kbd/main/.github/keyboard.svg"
-      width="640px"
+      width="512px"
     >
   </a>
 </p>

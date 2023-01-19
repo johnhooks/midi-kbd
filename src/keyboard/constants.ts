@@ -10,7 +10,7 @@ export const Notes = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb"
 /**
  * The range of keys used for the upper keyboard.
  *
- * @internal
+ * @public
  */
 export const UpperKeyboardNoteOrder = [
 	// C0
@@ -58,7 +58,7 @@ export const UpperKeyboardNoteOrder = [
 /**
  * The range of keys used for the lower keyboard.
  *
- * @internal
+ * @public
  */
 export const LowerKeyboardNoteOrder = [
 	// C0
@@ -184,7 +184,7 @@ export const KeyboardKeyOrder = [
 /**
  * A set of all keyboard event codes used by `midi-kbd`.
  *
- * @internal
+ * @public
  */
 export const KeyCodes = [
 	...KeyboardRowOne,

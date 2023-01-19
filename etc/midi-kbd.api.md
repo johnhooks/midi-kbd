@@ -4,14 +4,7 @@
 
 ```ts
 
-/// <reference types="webmidi" />
-
-import { BaseActionObject } from 'xstate';
 import { Observable } from 'rxjs';
-import { ResolveTypegenMeta } from 'xstate';
-import { ServiceMap } from 'xstate';
-import { StateMachine } from 'xstate';
-import { TypegenDisabled } from 'xstate';
 
 // Warning: (ae-internal-missing-underscore) The name "CCModeValues" should be prefixed with an underscore because the declaration is marked as @internal
 //
@@ -43,9 +36,6 @@ export class Keyboard extends HTMLElement {
     disconnectedCallback(): void;
 }
 
-// Warning: (ae-incompatible-release-tags) The symbol "KeyboardCode" is marked as @public, but its signature references "UpperKeyboardNoteOrder" which is marked as @internal
-// Warning: (ae-incompatible-release-tags) The symbol "KeyboardCode" is marked as @public, but its signature references "LowerKeyboardNoteOrder" which is marked as @internal
-//
 // @public
 export type KeyboardCode = typeof UpperKeyboardNoteOrder[number] | typeof LowerKeyboardNoteOrder[number];
 
@@ -64,15 +54,10 @@ export type KeyboardMidiMap = {
     key: KeyboardCode;
 } & MidiNote;
 
-// Warning: (ae-incompatible-release-tags) The symbol "KeyCode" is marked as @public, but its signature references "ValueOf" which is marked as @internal
-// Warning: (ae-incompatible-release-tags) The symbol "KeyCode" is marked as @public, but its signature references "KeyCodes" which is marked as @internal
-//
 // @public
 export type KeyCode = ValueOf<typeof KeyCodes>;
 
-// Warning: (ae-internal-missing-underscore) The name "KeyCodes" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export const KeyCodes: readonly ["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "Backspace", "Tab", "KeyQ", "KeyW", "KeyE", "KeyR", "KeyT", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "BracketLeft", "BracketRight", "Backslash", "CapLock", "KeyA", "KeyS", "KeyD", "KeyF", "KeyG", "KeyH", "KeyJ", "KeyK", "KeyL", "Semicolon", "Quote", "Enter", "ShiftLeft", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Comma", "Period", "Slash", "ShiftRight", "Space"];
 
 // @public
@@ -91,9 +76,7 @@ export type KeyPos = Point & {
     width: number;
 };
 
-// Warning: (ae-internal-missing-underscore) The name "LowerKeyboardNoteOrder" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export const LowerKeyboardNoteOrder: readonly ["KeyZ", "KeyS", "KeyX", "KeyD", "KeyC", "KeyV", "KeyG", "KeyB", "KeyH", "KeyN", "KeyJ", "KeyM", "Comma", "KeyL", "Period", "Semicolon", "Slash"];
 
 // @public (undocumented)
@@ -148,13 +131,6 @@ export class MidiEncoder implements MidiPortInterface<Uint8Array> {
 export type MidiEvent = MidiNote & {
     type: "on" | "off";
 };
-
-// Warning: (ae-forgotten-export) The symbol "Context" needs to be exported by the entry point index.d.ts
-// Warning: (ae-forgotten-export) The symbol "MidiEvent_2" needs to be exported by the entry point index.d.ts
-// Warning: (ae-forgotten-export) The symbol "MidiTypestate" needs to be exported by the entry point index.d.ts
-//
-// @alpha
-export const midiMachine: StateMachine<Context, any, MidiEvent_2, MidiTypestate, BaseActionObject, ServiceMap, ResolveTypegenMeta<TypegenDisabled, MidiEvent_2, BaseActionObject, ServiceMap>>;
 
 // @public
 export type MidiNote = {
@@ -220,14 +196,10 @@ export type ToggleEvent = CustomEvent<{
     value: boolean;
 }>;
 
-// Warning: (ae-internal-missing-underscore) The name "UpperKeyboardNoteOrder" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export const UpperKeyboardNoteOrder: readonly ["KeyQ", "Digit2", "KeyW", "Digit3", "KeyE", "KeyR", "Digit5", "KeyT", "Digit6", "KeyY", "Digit7", "KeyU", "KeyI", "Digit9", "KeyO", "Digit0", "KeyP", "BracketLeft", "Equal", "BracketRight"];
 
-// Warning: (ae-internal-missing-underscore) The name "ValueOf" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export type ValueOf<T> = T[keyof T];
 
 // (No @packageDocumentation comment for this package)

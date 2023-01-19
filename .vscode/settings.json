@@ -14,7 +14,8 @@
 		"dist/**": true,
 		"lib/**": true,
 		"node_modules/**": true,
-		"package-lock.json": true
+		"package-lock.json": true,
+		"yarn.lock": true
 	},
 	"editor.quickSuggestionsDelay": 1000,
 	"[javascript]": {

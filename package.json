@@ -38,9 +38,7 @@
   },
   "dependencies": {
     "lit-html": "2.6.1",
-    "rxjs": "^7.8.0",
-    "webmidi": "3.0.25",
-    "xstate": "4.35.1"
+    "rxjs": "^7.8.0"
   },
   "devDependencies": {
     "@microsoft/api-documenter": "7.19.27",
