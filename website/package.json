@@ -13,7 +13,6 @@
 		"vite": "4.0.4"
 	},
 	"dependencies": {
-		"tone": "14.7.77",
 		"webmidi": "^3.0.25"
 	}
 }

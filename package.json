@@ -37,8 +37,9 @@
 		"website:preview": "yarn --cwd website preview"
 	},
 	"dependencies": {
+		"lit-html": "2.6.1",
 		"rxjs": "^7.8.0",
-		"webmidi": "^3.0.25",
+		"webmidi": "3.0.25",
 		"xstate": "4.35.1"
 	},
 	"devDependencies": {

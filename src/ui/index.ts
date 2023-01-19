@@ -1,1 +1,2 @@
-export * from "./calc-key-pos.js";
+export { Keyboard } from "./keyboard.js";
+export * from "./toggle.js";

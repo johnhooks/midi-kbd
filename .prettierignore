@@ -6,6 +6,8 @@ dist
 docs
 temp
 
+/website/public
+
 **/*.md
 
 .env

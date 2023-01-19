@@ -7,16 +7,11 @@
 /// <reference types="webmidi" />
 
 import { BaseActionObject } from 'xstate';
-import { Observable as Observable_2 } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ResolveTypegenMeta } from 'xstate';
 import { ServiceMap } from 'xstate';
 import { StateMachine } from 'xstate';
 import { TypegenDisabled } from 'xstate';
-
-// Warning: (ae-internal-missing-underscore) The name "calcKeyPos" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
-export function calcKeyPos(size: number, spacing: number, offset?: Point): KeyPos[];
 
 // Warning: (ae-internal-missing-underscore) The name "CCModeValues" should be prefixed with an underscore because the declaration is marked as @internal
 //
@@ -38,10 +33,15 @@ export type Channel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 
 // @public
 export function encodeAllSoundOff(channel: Channel): Uint8Array;
 
-// Warning: (ae-internal-missing-underscore) The name "filterKeyboardEvents" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal (undocumented)
-export function filterKeyboardEvents(): (source: Observable_2<KeyEvent>) => Observable_2<KeyboardEvent_2>;
+// @public (undocumented)
+export function filterKeyboardEvents(): (source: Observable<KeyEvent>) => Observable<KeyboardEvent_2>;
+
+// @public
+export class Keyboard extends HTMLElement {
+    constructor();
+    // (undocumented)
+    disconnectedCallback(): void;
+}
 
 // Warning: (ae-incompatible-release-tags) The symbol "KeyboardCode" is marked as @public, but its signature references "UpperKeyboardNoteOrder" which is marked as @internal
 // Warning: (ae-incompatible-release-tags) The symbol "KeyboardCode" is marked as @public, but its signature references "LowerKeyboardNoteOrder" which is marked as @internal
@@ -84,7 +84,7 @@ export type KeyEvent = {
 // Warning: (ae-internal-missing-underscore) The name "keyEvents" should be prefixed with an underscore because the declaration is marked as @internal
 //
 // @internal (undocumented)
-export const keyEvents: Observable_2<KeyEvent>;
+export const keyEvents: Observable<KeyEvent>;
 
 // @public
 export type KeyPos = Point & {
@@ -96,11 +96,8 @@ export type KeyPos = Point & {
 // @internal
 export const LowerKeyboardNoteOrder: readonly ["KeyZ", "KeyS", "KeyX", "KeyD", "KeyC", "KeyV", "KeyG", "KeyB", "KeyH", "KeyN", "KeyJ", "KeyM", "Comma", "KeyL", "Period", "Semicolon", "Slash"];
 
-// Warning: (ae-forgotten-export) The symbol "Octave_2" needs to be exported by the entry point index.d.ts
-// Warning: (ae-internal-missing-underscore) The name "mapToMidiEvent" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal (undocumented)
-export function mapToMidiEvent(octave?: Octave_2): (source: Observable_2<KeyboardEvent_2>) => Observable_2<MidiEvent>;
+// @public (undocumented)
+export function mapToMidiEvent(octave?: Octave): (source: Observable<KeyboardEvent_2>) => Observable<MidiEvent>;
 
 // @public
 export abstract class MidiDecoder implements MidiPortInterface<void> {
@@ -152,22 +149,11 @@ export type MidiEvent = MidiNote & {
     type: "on" | "off";
 };
 
-// @public
-export class MidiKeyboard extends Observable<Uint8Array> {
-    // Warning: (ae-forgotten-export) The symbol "Octave_3" needs to be exported by the entry point index.d.ts
-    constructor(channel?: Channel, octave?: Octave_3);
-    handleKeyEvent: (event: KeyboardEvent) => void;
-    // (undocumented)
-    register(): void;
-    // (undocumented)
-    unregister(): void;
-}
-
 // Warning: (ae-forgotten-export) The symbol "Context" needs to be exported by the entry point index.d.ts
 // Warning: (ae-forgotten-export) The symbol "MidiEvent_2" needs to be exported by the entry point index.d.ts
 // Warning: (ae-forgotten-export) The symbol "MidiTypestate" needs to be exported by the entry point index.d.ts
 //
-// @public
+// @alpha
 export const midiMachine: StateMachine<Context, any, MidiEvent_2, MidiTypestate, BaseActionObject, ServiceMap, ResolveTypegenMeta<TypegenDisabled, MidiEvent_2, BaseActionObject, ServiceMap>>;
 
 // @public
@@ -203,23 +189,7 @@ export type MidiReceiver = MidiPortInterface<void>;
 export type MidiStatus = ValueOf<typeof StatusByte>;
 
 // @public
-export class Observable<TValue> {
-    constructor(initialValue: TValue);
-    close(): void;
-    error<TError extends Error>(error: TError): void;
-    next(value: TValue): void;
-    subscribe(listener: Observer<TValue>): () => void;
-    get value(): TValue;
-}
-
-// Warning: (ae-forgotten-export) The symbol "ObserverFn" needs to be exported by the entry point index.d.ts
-// Warning: (ae-forgotten-export) The symbol "ObserverObj" needs to be exported by the entry point index.d.ts
-//
-// @public
-export type Observer<TValue> = ObserverFn<TValue> | ObserverObj<TValue>;
-
-// @public
-export type Octave = 0 | 1 | 2 | 4 | 5 | 6 | 7 | 8;
+export type Octave = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 // @public
 export type Point = {
@@ -239,6 +209,16 @@ export const StatusByte: {
     readonly ChannelPressure: 13;
     readonly PitchBend: 14;
 };
+
+// @public
+export class Toggle extends HTMLElement {
+    constructor();
+}
+
+// @public (undocumented)
+export type ToggleEvent = CustomEvent<{
+    value: boolean;
+}>;
 
 // Warning: (ae-internal-missing-underscore) The name "UpperKeyboardNoteOrder" should be prefixed with an underscore because the declaration is marked as @internal
 //
