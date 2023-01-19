@@ -13,12 +13,11 @@ jobs:
         uses: ./.github/actions/node
 
       - name: Build package
-        uses: ./.github/actions/build
+        shell: bash
+        run: yarn build
 
       - name: Archive build artifact
         uses: actions/upload-artifact@v3
         with:
           name: pkg-build-${{ github.run_id }}
-          path: |
-            build
-            dist
+          path: dist/*.js
