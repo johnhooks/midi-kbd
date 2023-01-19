@@ -14,7 +14,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  NODE_ENV: production
+  NODE_ENV: development
+  CI: true
 
 jobs:
   build:
@@ -67,7 +68,7 @@ jobs:
 
   pages:
     # Only deploy if the string '(website)' is in the commit message. NOTE not a RegExp
-    # if: "contains(github.event.head_commit.message, '(website)')"
+    if: "contains(github.event.head_commit.message, '(website)')"
 
     # Add a dependency to the build job
     needs: website
