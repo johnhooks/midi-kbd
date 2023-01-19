@@ -5,7 +5,7 @@ import type { KeyCode, KeyEvent } from "../types/index.js";
 import { KeyCodes } from "./constants.js";
 
 /**
- * @internal
+ * @public
  */
 export const keyEvents = new Observable<KeyEvent>((subscriber) => {
 	function handleKeyEvent(event: KeyboardEvent) {

@@ -8,6 +8,7 @@ import { exec } from "./utils/exec.js";
 
 const rootDir = path.resolve(fileURLToPath(new URL(".", import.meta.url)), "../");
 
+const apiDocumenterPath = path.join(rootDir, "node_modules/.bin/api-documenter");
 const apiJsonPath = path.join(rootDir, "temp/midi-kbd.api.json");
 
 if (!fs.existsSync(apiJsonPath)) {
@@ -24,7 +25,7 @@ const apiDocumenterArgs = ["markdown", "-i", "./temp", "-o", "./docs", ...args];
 
 console.log(`api-documenter ${apiDocumenterArgs.join(" ")}`);
 
-exec("yarn", ["exec", "api-documenter", ...apiDocumenterArgs])
+exec(apiDocumenterPath, apiDocumenterArgs)
 	.then(() => process.exit(0))
 	.catch((code) => {
 		process.exit(code);
