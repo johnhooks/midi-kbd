@@ -1,6 +1,6 @@
 {
 	"editor.tabSize": 2,
-	"editor.insertSpaces": true,
+	"editor.insertSpaces": false,
 	"editor.rulers": [84],
 	"editor.formatOnSave": true,
 	"files.encoding": "utf8",

@@ -22,7 +22,6 @@ export class SimpleSynth extends HTMLElement {
 			.pipe(mapToMidiEvent(4))
 			.subscribe((event) => {
 				if (event.type === "on") {
-					console.log(event.midi);
 					this._audioNode?.port.postMessage({ type: "trigger", note: event.midi });
 				}
 			});
