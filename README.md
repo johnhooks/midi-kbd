@@ -1,8 +1,9 @@
-<p align="center" style="max-width: 720px;">
+<p align="center">
   <a href="https://johnhooks.io/midi-kbd">
     <img
       alt="Preview of computer keyboard overlaid with musical notes"
       src="https://raw.githubusercontent.com/johnhooks/midi-kbd/main/.github/keyboard.svg"
+      width="640px"
     >
   </a>
 </p>
