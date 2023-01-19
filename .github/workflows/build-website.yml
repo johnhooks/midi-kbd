@@ -21,7 +21,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: pkg-build-${{ github.run_id }}
-          path: dist
 
       - name: Build website
         shell: bash
