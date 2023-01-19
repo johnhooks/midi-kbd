@@ -2,13 +2,6 @@
 # yarn lockfile v1
 
 
-"@babel/runtime@^7.20.6":
-  version "7.20.7"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.20.7.tgz#fcb41a5a70550e04a7b708037c7c32f7f356d8fd"
-  integrity sha512-UF0tvkUtxwAgZ5W/KrkHf0Rn0fdnLDU9ScxBrEVNUprE/MzirjK4MJUX1/BVDv00Sv8cljtukVK1aky++X1SjQ==
-  dependencies:
-    regenerator-runtime "^0.13.11"
-
 "@esbuild/android-arm64@0.16.15":
   version "0.16.15"
   resolved "https://registry.yarnpkg.com/@esbuild/android-arm64/-/android-arm64-0.16.15.tgz#d58b9efe279b553b377395318d21e360058b3622"
@@ -119,18 +112,6 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.16.15.tgz#e28277cdbc1c9cde2b982c814d05f44d4b1f0580"
   integrity sha512-27h5GCcbfomVAqAnMJWvR1LqEY0dFqIq4vTe5nY3becnZNu0SX8F0+gTk3JPvgWQHzaGc6VkPzlOiMkdSUunUA==
 
-"@types/webmidi@^2.0.6":
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/@types/webmidi/-/webmidi-2.0.6.tgz#c9b1428bbc5d5f49cc6201eae0dc5e2b3fd23e0e"
-  integrity sha512-sfS0A5IryqmBrUpcGPipEPeFdpqmZzP6b6lZFxHKgz5n2Vhzh4yJ5P2TvoDUhDjqJyv0Y25ng0Qodgo2Vu08ug==
-
-djipevents@^2.0.7:
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/djipevents/-/djipevents-2.0.7.tgz#4805dcb8dcf0b4a2c6e51eaecdfc218bb8f202fb"
-  integrity sha512-KNFYaU85imxOCKOUsIR70Iz9E19r96/X7LSH+u0tSoZdpWcBdzoqtTsU+wuLhc6GMpSFob+KInkZAbfKi01Bjg==
-  dependencies:
-    "@babel/runtime" "^7.20.6"
-
 esbuild@^0.16.3:
   version "0.16.15"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.16.15.tgz#02663f41eac47433879f09894dbe97c2dc837ecf"
@@ -183,19 +164,6 @@ is-core-module@^2.9.0:
   dependencies:
     has "^1.0.3"
 
-jazz-midi@^1.7.9:
-  version "1.7.9"
-  resolved "https://registry.yarnpkg.com/jazz-midi/-/jazz-midi-1.7.9.tgz#ad564e85acf12414aec7ef7d879ad61a5d7f6896"
-  integrity sha512-c8c4BBgwxdsIr1iVm53nadCrtH7BUlnX3V95ciK/gbvXN/ndE5+POskBalXgqlc/r9p2XUbdLTrgrC6fou5p9w==
-
-jzz@^1.5.6:
-  version "1.5.8"
-  resolved "https://registry.yarnpkg.com/jzz/-/jzz-1.5.8.tgz#44cd7bbddd29158fa9e6b283681d170c84a70b2f"
-  integrity sha512-Fpnd75txPFaytHSJMR4LbcId8vkzS9sarxGIU2OqvmuqUMte0txGOSg1+/V4lTYJmR6Br2UcvIrwu28ewb5eFQ==
-  dependencies:
-    "@types/webmidi" "^2.0.6"
-    jazz-midi "^1.7.9"
-
 nanoid@^3.3.4:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
@@ -219,11 +187,6 @@ postcss@^8.4.20:
     nanoid "^3.3.4"
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
-
-regenerator-runtime@^0.13.11:
-  version "0.13.11"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz#f6dca3e7ceec20590d07ada785636a90cdca17f9"
-  integrity sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==
 
 resolve@^1.22.1:
   version "1.22.1"
@@ -251,10 +214,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-typescript@4.9.3:
-  version "4.9.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.3.tgz#3aea307c1746b8c384435d8ac36b8a2e580d85db"
-  integrity sha512-CIfGzTelbKNEnLpLdGFgdyKhG23CKdKgQPOBc+OUNrkJ2vr+KSzsSV5kq5iWhEQbok+quxgGzrAtGWCyU7tHnA==
+typescript@4.9.4:
+  version "4.9.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.4.tgz#a2a3d2756c079abda241d75f149df9d561091e78"
+  integrity sha512-Uz+dTXYzxXXbsFpM86Wh3dKCxrQqUcVMxwU54orwlJjOpO3ao8L7j5lH+dWfTwgCwIuM9GQ2kvVotzYJMXTBZg==
 
 vite@4.0.4:
   version "4.0.4"
@@ -267,12 +230,3 @@ vite@4.0.4:
     rollup "^3.7.0"
   optionalDependencies:
     fsevents "~2.3.2"
-
-webmidi@^3.0.25:
-  version "3.0.25"
-  resolved "https://registry.yarnpkg.com/webmidi/-/webmidi-3.0.25.tgz#7d964f5bb9b1d9ae6f787a2927c873d7407da026"
-  integrity sha512-DWXcfuJLhCEJAQaICMnjyhCGH8pVxiXgUwQlr5+SnYp5IOvL/PJJQwlXcWPE4kPfNXlWqi/bn+lAaZW3PwNO8Q==
-  dependencies:
-    djipevents "^2.0.7"
-  optionalDependencies:
-    jzz "^1.5.6"

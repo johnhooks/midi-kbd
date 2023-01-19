@@ -1,0 +1,20 @@
+name: Build website
+
+runs:
+  using: "composite"
+  steps:
+    - name: Download the build artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: pkg-build-${{ github.run_id }}
+
+    - name: Build website
+      shell: bash
+      run: yarn website:build
+
+    # This action uploads an artifact named `github-pages` which will be used by actions/deploy-pages
+    - name: Upload artifact
+      if: ${{ env.NODE_ENV == 'production' }}
+      uses: actions/upload-pages-artifact@v1
+      with:
+        path: ./website/dist

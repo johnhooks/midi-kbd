@@ -1,4 +1,4 @@
-name: Setup yarn
+name: Setup node and yarn
 
 runs:
   using: "composite"

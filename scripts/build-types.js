@@ -1,13 +1,6 @@
 #!/usr/bin/env node
 
-import path from "path";
-import { fileURLToPath } from "url";
-
 import { exec } from "./utils/exec.js";
-
-const rootDir = path.resolve(fileURLToPath(new URL(".", import.meta.url)), "../");
-
-const apiExtractorPath = path.join(rootDir, "node_modules/.bin/api-extractor");
 
 // Strip `--local` out. It will be configured only by this script.
 const args = process.argv.slice(2).filter((arg) => arg !== "--local");
@@ -19,11 +12,11 @@ const localFlag = process.env.CI ? [] : ["--local"];
 /**
  * ApiExtractor CLI arguments.
  */
-const apiExtractorArgs = ["run", ...args, ...localFlag];
+const apiExtractorArgs = ["exec", "api-extractor", "run", ...args, ...localFlag];
 
-console.log(`api-extractor ${apiExtractorArgs.join(" ")}`);
+console.log(`yarn ${apiExtractorArgs.join(" ")}`);
 
-exec(apiExtractorPath, apiExtractorArgs)
+exec("yarn", apiExtractorArgs)
 	.then(() => process.exit(0))
 	.catch((code) => {
 		process.exit(code);
