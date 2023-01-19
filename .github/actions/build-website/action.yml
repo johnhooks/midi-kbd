@@ -11,10 +11,3 @@ runs:
     - name: Build website
       shell: bash
       run: yarn website:build
-
-    # This action uploads an artifact named `github-pages` which will be used by actions/deploy-pages
-    - name: Upload artifact
-      if: ${{ env.NODE_ENV == 'production' }}
-      uses: actions/upload-pages-artifact@v1
-      with:
-        path: ./website/dist
