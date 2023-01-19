@@ -5,7 +5,7 @@ import type { KeyEvent, KeyboardEvent, KeyboardCode } from "../types/index.js";
 import { KeyboardNoteCodes } from "./constants.js";
 
 /**
- * @internal
+ * @public
  */
 export function filterKeyboardEvents() {
 	const down = new Map<string, boolean>();

@@ -67,7 +67,7 @@ type MidiTypestate = InitialContext | FailureContext | SuccessContext;
 /**
  * MIDI Access State Machine.
  *
- * @public
+ * @alpha
  */
 export const midiMachine = createMachine<Context, MidiEvent, MidiTypestate>(
 	{

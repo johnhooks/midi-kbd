@@ -44,7 +44,7 @@ export type MidiStatus = ValueOf<typeof StatusByte>;
  * Zero based index
  * @public
  */
-export type Octave = 0 | 1 | 2 | 4 | 5 | 6 | 7 | 8;
+// type Octave = 0 | 1 | 2 | 4 | 5 | 6 | 7 | 8;
 
 /**
  * MIDI channel type.

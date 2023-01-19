@@ -1,14 +1,29 @@
 :root {
-	--dark-gray: #1b1b1b;
-	--light-gray: rgb(208, 208, 208);
 	--white: #f6f6f6;
-	--md-gray: rgb(77, 80, 87);
 	--dark-blue: #222630;
-	--violet: rgb(225, 138, 232);
-	--dark-violet: rgb(225, 128, 232);
-	--bg-color: var(--dark-blue);
+
+	--gray-h: 222;
+	--gray-s: 6.1%;
+	--gray-l: 32.2%;
+
+	--gray: hsl(var(--gray-h), var(--gray-s), var(--gray-l));
+	--medium-gray: hsl(var(--gray-h), var(--gray-s), calc(var(--gray-l) + 25%));
+	--light-gray: hsl(var(--gray-h), var(--gray-s), calc(var(--gray-l) + 50%));
+	--dark-gray: hsl(var(--gray-h), var(--gray-s), calc(var(--gray-l) - 20%));
+
+	--violet-h: 296;
+	--violet-s: 67.1%;
+	--violet-l: 72.5%;
+	--violet: hsl(var(--violet-h), var(--violet-s), var(--violet-l));
+	--dark-violet: hsl(var(--violet-h), var(--violet-s), calc(var(--violet-l) - 25%));
+
+	--bg-color: var(--dark-gray);
 	--fg-color: var(--light-gray);
 	--key-fill: var(--light-gray);
+
+	--secondary-fg-color: var(--gray);
+
+	--primary: var(--violet);
 }
 
 body {
@@ -25,28 +40,6 @@ header > h1 {
 	text-align: center;
 }
 
-rect.key {
-	stroke: #999;
-	fill: var(--key-fill);
-	stroke-width: 1px;
-
-	transition-property: transform, fill;
-	transition-duration: 250ms;
-}
-
-rect.key.natural {
-	fill: var(--white);
-}
-
-rect.key.accidental {
-	fill: var(--black);
-}
-
-rect.key.pressed {
-	fill: violet; /* TODO Remove */
-	transform: translateY(3px);
-}
-
 #app {
 	position: relative;
 }
@@ -54,7 +47,7 @@ rect.key.pressed {
 #play-control > .icon {
 	width: 64px;
 	height: 64px;
-	stroke: violet;
+	stroke: var(--primary);
 	stroke-width: 1px;
 	margin-bottom: 1rem;
 
@@ -72,6 +65,18 @@ rect.key.pressed {
 	display: none;
 }
 
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
 @media (min-width: 720px) {
 	header > h1 {
 		margin-top: 4rem;
@@ -86,13 +91,21 @@ rect.key.pressed {
 	:root {
 		--bg-color: var(--white);
 		--fg-color: var(--dark-gray);
-		--key-fill: var(light-gray);
+
+		--primary: var(--violet);
+
+		--key-fill: var(--light-gray);
+		--secondary-fg-color: var(--light-gray);
 	}
 }
 @media (prefers-color-scheme: dark) {
 	:root {
 		--bg-color: var(--dark-gray);
 		--fg-color: var(--light-gray);
-		--key-fill: var(--md-gray);
+
+		--primary: var(--dark-violet);
+
+		--key-fill: var(--gray);
+		--secondary-fg-color: var(--gray);
 	}
 }

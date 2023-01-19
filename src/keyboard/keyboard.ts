@@ -1,6 +1,6 @@
-import { Observable } from "../common/observable.js";
-import { MidiEncoder, encodeAllSoundOff } from "../midi/encode.js";
-import type { Channel } from "../types/index.js";
+// import { Observable } from "../common/observable.js";
+// import { MidiEncoder } from "../midi/encode.js";
+// import type { Channel } from "../types/index.js";
 
 import { genKeyboardMidiIndex } from "./helpers.js";
 
@@ -22,20 +22,20 @@ type Octave = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 /**
  * MIDI Computer Keyboard Controller Interface.
  *
- * @public
+ * @alpha
  */
-export class MidiKeyboard extends Observable<Uint8Array> {
+export class MidiKeyboard /* extends Observable<Uint8Array> */ {
 	#keyboardMidiIndex: ReturnType<typeof genKeyboardMidiIndex>;
 
-	#encoder = new MidiEncoder();
+	// #encoder = new MidiEncoder();
 	#down = new Map<string, boolean>();
 
-	#outputChannel: Channel = 0;
+	// #outputChannel: Channel = 0;
 	#octave: Octave;
 
-	constructor(channel: Channel = 0, octave: Octave = 4) {
-		super(encodeAllSoundOff(channel));
-		this.#outputChannel = channel;
+	constructor(/* channel: Channel = 0, */ octave: Octave = 4) {
+		// super(encodeAllSoundOff(channel));
+		// this.#outputChannel = channel;
 		this.#octave = octave;
 		this.#keyboardMidiIndex = genKeyboardMidiIndex(this.#octave);
 	}
@@ -51,7 +51,7 @@ export class MidiKeyboard extends Observable<Uint8Array> {
 		const keyMap = this.#keyboardMidiIndex.get(event.code);
 
 		if (keyMap) {
-			const { midi: note } = keyMap;
+			// const { midi: note } = keyMap;
 			if (event.type === "keydown") {
 				const down = Array.from(this.#down.entries())
 					.filter(([, value]) => value)
@@ -65,11 +65,11 @@ export class MidiKeyboard extends Observable<Uint8Array> {
 				} else {
 					this.#down.set(event.code, true);
 					// `velocity` is 64, the default for devices that are not velocity sensitive.
-					this.next(this.#encoder.noteOn(this.#outputChannel, note, 64));
+					// this.next(this.#encoder.noteOn(this.#outputChannel, note, 64));
 				}
 			} else if (event.type === "keyup") {
 				this.#down.set(event.code, false);
-				this.next(this.#encoder.noteOff(this.#outputChannel, note));
+				// this.next(this.#encoder.noteOff(this.#outputChannel, note));
 			}
 		}
 
