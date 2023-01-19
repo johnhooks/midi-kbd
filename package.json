@@ -32,9 +32,9 @@
 		"prepare": "husky install",
 		"release": "shipjs prepare",
 		"test": "vitest run",
-		"website:dev": "yarn --cwd example dev",
-		"website:build": "yarn --cwd example build",
-		"website:preview": "yarn --cwd example preview"
+		"website:dev": "yarn --cwd website dev",
+		"website:build": "yarn --cwd website build",
+		"website:preview": "yarn --cwd website preview"
 	},
 	"dependencies": {
 		"rxjs": "^7.8.0",
