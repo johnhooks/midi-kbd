@@ -13,9 +13,13 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+env: NODE_ENV=production
+
 jobs:
   build:
     uses: ./.github/workflows/build-pkg.yml
+    with:
+      environment: production
 
   release:
     needs: build
