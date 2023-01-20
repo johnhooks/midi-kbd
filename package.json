@@ -22,7 +22,7 @@
     "build:all": "yarn build && yarn build:docs",
     "build:docs": "./scripts/build-docs.js",
     "build:esm": "./scripts/esm.js",
-    "build:tsc": "tsc --build ./src",
+    "build:tsc": "./scripts/compile.js",
     "build:types": "./scripts/build-types.js",
     "check": "tsc --build ./src && tsc --project ./tests",
     "clean": "rimraf ./{dist,temp}",
